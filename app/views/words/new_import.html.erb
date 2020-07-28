@@ -1,0 +1,5 @@
+<%= form_for @words, url: import_words_path, html: { multipart: true } do |f| %>
+
+    <%= f.file_field :import_file %>
+  
+  <% end %>
