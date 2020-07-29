@@ -26,10 +26,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'pagy'
-gem 'nokogiri'
-gem 'materialize-sass', '~> 1.0.0'
+gem 'pagy' # simple pagination
+gem 'nokogiri' # URL parsing
+gem 'materialize-sass', '~> 1.0.0' # materialize CSS/js framework 
 gem 'material_icons' 
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
