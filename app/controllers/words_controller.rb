@@ -7,6 +7,7 @@ class WordsController < ApplicationController
   def index
     # @words = Word.all
     @pagy, @words = pagy(Word.all, items:250)
+    @count = Word.count
   end
 
   # GET /words/1

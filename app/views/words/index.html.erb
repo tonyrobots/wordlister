@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Words</h1>
+<h1><%= number_with_delimiter @count %> Words 
+<%= link_to "+", new_word_path, class:"btn-floating btn-large waves-effect waves-light blue right",  title:"Add New Word" %>
+  
 
-<%== pagy_nav(@pagy) %>
+</h1>
+
+<%== pagy_materialize_nav(@pagy) %>
 <table>
   <thead>
     <tr>
@@ -17,7 +21,7 @@
   
     <% @words.each do |word| %>
       <tr>
-        <td><%= word.word %></td>
+        <td><%= link_to word.word, "https://www.xwordinfo.com/Finder?word=#{word.word}" %></td>
         <td><%= word.score %></td>
         <td><%= if word.source 
           link_to word.source.name, word.source 
@@ -32,6 +36,5 @@
   </tbody>
 </table>
 
-<br>
-<%== pagy_nav(@pagy) %> <br />
-<%= link_to 'New Word', new_word_path %>
+<br><%== pagy_materialize_nav(@pagy) %> <br />
+
