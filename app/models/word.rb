@@ -1,5 +1,15 @@
 class Word < ApplicationRecord
+  # for search:
+  include PgSearch
+  pg_search_scope :search_by_word, against: [:word],
+   using: {
+    tsearch: {
+      prefix: true
+    }
+  }
+
   belongs_to :source,  optional: true
+
 
   validates :word, presence: true, uniqueness: true
   default_scope { order(word: :asc) }

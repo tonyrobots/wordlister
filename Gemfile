@@ -31,6 +31,8 @@ gem 'nokogiri' # URL parsing
 gem 'materialize-sass', '~> 1.0.0' # materialize CSS/js framework 
 gem 'material_icons' 
 
+gem 'pg_search' #postgres search
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

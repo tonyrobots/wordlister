@@ -5,9 +5,17 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    # @words = Word.all
-    @pagy, @words = pagy(Word.all, items:250)
-    @count = Word.count
+    if params[:term]
+      # first strip spaces or hyphens
+      @term = params[:term].gsub(/[^a-zA-Z]/,'')
+      @header = "Words that contain '#{@term}''"
+      @pagy, @words = pagy(Word.search_by_word(@term), items:20)
+      @count = Word.search_by_word(@term).count
+    else
+      @header = "Words"
+      @pagy, @words = pagy(Word.all, items:250)
+      @count = Word.count
+    end
   end
 
   # GET /words/1
