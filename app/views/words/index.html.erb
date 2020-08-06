@@ -7,7 +7,7 @@
 </h1>
 
 <%== pagy_materialize_nav(@pagy) %>
-<table>
+<table class="striped">
   <thead>
     <tr>
       <th>Word</th>
@@ -21,7 +21,10 @@
   
     <% @words.each do |word| %>
       <tr>
-        <td><%= link_to word.word, "https://www.xwordinfo.com/Finder?word=#{word.word}" %></td>
+        <td>
+          <%= link_to word.word, "https://www.xwordinfo.com/Finder?word=#{word.word}", class: "word" %>
+          (<%= word.word.size %>) 
+        </td>
         <td><%= word.score %></td>
         <td><%= if word.source 
           link_to word.source.name, word.source 

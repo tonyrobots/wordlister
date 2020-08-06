@@ -24,3 +24,8 @@ $secondary-color: color("grey", "base") !default;
  html {
     font-family: 'Times New Roman', Times, serif;
   }
+
+  .word {
+    font-weight: bold;
+    font-size: large;
+  }
