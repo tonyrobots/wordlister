@@ -33,6 +33,8 @@ accounts payable
 accounts receivable
 accustom to;
 acetic acid;25
+Office; 50
+On Ice; 55
 Achilles heel
 Achilles tendon
 Achilles' heel;50
@@ -40,3 +42,5 @@ acid house
 acid jazz;50
 acid rain;30
 birkenstocks;50
+Pandemonium;50
+Code Monkey;45

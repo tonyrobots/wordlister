@@ -23,7 +23,7 @@
       <tr>
         <td>
           <%= link_to word.word, "https://www.xwordinfo.com/Finder?word=#{word.word}", class: "word" %>
-          (<%= word.word.size %>) 
+          (<%= word.word.size %>) - <%= word.original_word %>
         </td>
         <td><%= word.score %></td>
         <td><%= if word.source 

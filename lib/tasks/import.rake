@@ -58,6 +58,9 @@ namespace :import  do
             total+=1
 
             line.strip! #strip whitespace from ends
+            
+            # preserve original word as exists in the file, before it goes through the ringer
+            original_word = line.split(";")[0]
             line.scrub! # remove non-UTF8 chars
             line = line.gsub(/\s/,'')    # remove blank space, might be redundant but whatever
 
@@ -101,7 +104,7 @@ namespace :import  do
                         dupes +=1
                     end
                     next
-                elsif Word.create(word:word, score:score, source_id: source_id)
+                elsif Word.create(word:word, original_word: original_word, score:score, source_id: source_id)
                     #puts "saved successfully"
                     saved+=1
                 else

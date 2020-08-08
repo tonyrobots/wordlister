@@ -1,0 +1,22 @@
+<h2>Substitution:</h2>
+Substitute _____ for ______. <br />
+
+<div class="col s8 input-field">
+<%= form_with url: tools_substitute_path, method: :get, local: true do %>
+  <%= text_field_tag 'str1', params[:str1], placeholder: "String 1"  %>
+  <%= text_field_tag 'str2', params[:str2], placeholder: "String 2"  %>
+
+  <%= submit_tag 'Look for matches', class: "btn waves-effect waves-light float-right"%>
+<% end %>
+</div>
+
+<h3><%= @words.count %> Matches</h3>
+<i>Tested <%= @candidates.count %> candidates that matched '<%= @str1 %>'.</i><br />
+<ul><pre>
+<% @words.each do |word| %>
+    <% next if !word[0] %>
+    <%= word[0].original_word %> - <%= word[1].original_word %>
+<% end %>
+</ul></pre>
+
+

@@ -16,9 +16,17 @@ class Word < ApplicationRecord
 
   before_validation :downcase_word
 
+  def self.search_by_substring (query)
+    query.downcase!
+    Word.where(["word LIKE ?", "%#{query}%"])
+  end
+
   def downcase_word
     self.word = word.downcase
   end
+
+
+
  
   def import import_file #not used
       File.foreach( import_file.path ).with_index do |line, index| 

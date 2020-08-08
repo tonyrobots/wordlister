@@ -9,8 +9,8 @@ class WordsController < ApplicationController
       # first strip spaces or hyphens
       @term = params[:term].gsub(/[^a-zA-Z]/,'')
       @header = "Words that contain '#{@term}''"
-      @pagy, @words = pagy(Word.search_by_word(@term), items:20)
-      @count = Word.search_by_word(@term).count
+      @pagy, @words = pagy(Word.search_by_substring(@term), items:20)
+      @count = @pagy.count
     else
       @header = "Words"
       @pagy, @words = pagy(Word.all, items:250)
