@@ -20,6 +20,18 @@ namespace :import  do
 
     end
 
+    desc "Set Alphagrams for words without them defined"
+    task :set_alphagrams => :environment do
+        words = Word.where(alphagram:[nil,""])
+        total = words.count
+        puts "Setting alphagrams for #{total}..."
+        i=0
+        for word in words
+            word.update(alphagram: word.word.chars.sort.join)
+            i+=1
+            show_progress_bar(i,total)
+        end
+    end
 
     desc "Import words from a text file (one word per line)"
     task :from_text_file, [:filename] => [ :environment ] do |t, args|
@@ -55,6 +67,7 @@ namespace :import  do
         source_id = get_source_id_by_name(File.basename(filename))
 
         file = File.open(filename, "r").each do |line|
+            line.encode!("UTF-8", invalid: :replace, replace: "")
             total+=1
 
             line.strip! #strip whitespace from ends
@@ -125,8 +138,8 @@ namespace :import  do
         report_to_console(total,saved,dupes,updated,errors,errormessage,time_elapsed)
     end
 
-    def show_progress_bar (total, linecount)
-        printf "\r #{total}/#{linecount} \t (%0.1f" % [(total.to_f/linecount) * 100] + "%%) complete."
+    def show_progress_bar (current, total)
+        printf "\r #{current}/#{total} \t (%0.1f" % [(current.to_f/total) * 100] + "%%) complete."
     end
 
     def report_to_console (total, new_words, dupes, updated, errors, errormessage, time_elapsed)

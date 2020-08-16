@@ -14,7 +14,7 @@ class Word < ApplicationRecord
   validates :word, presence: true, uniqueness: true
   default_scope { order(word: :asc) }
 
-  before_validation :downcase_word
+  before_validation :downcase_word, :set_alphagram
 
   def self.search_by_substring (query)
     query.downcase!
@@ -25,9 +25,15 @@ class Word < ApplicationRecord
     self.word = word.downcase
   end
 
+  def set_alphagram
+    # alphagram used to efficently find anagrams
+    self.alphagram = word.chars.sort.join
+  end
 
+  def anagrams
+    Word.where(alphagram: self.alphagram)
+  end
 
- 
   def import import_file #not used
       File.foreach( import_file.path ).with_index do |line, index| 
     

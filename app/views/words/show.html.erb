@@ -4,6 +4,18 @@
   <strong>Word:</strong>
   <%= @word.word %>
 </p>
+<%if @word.word != @word.original_word %>
+<p>
+  <strong>Original Word:</strong>
+  <%= @word.original_word %>
+</p>
+<% end %>
+
+<p>
+  <strong>Anagrams:</strong>
+    <% @word.anagrams.each do |anagram| %>
+      <%= anagram.word %> 
+    <% end %>
 
 <p>
   <strong>Score:</strong>

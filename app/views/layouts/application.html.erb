@@ -12,6 +12,15 @@
 
   <body>
   <div class="container">
+    <nav>
+    <div class="nav-wrapper">
+    <%= link_to "Wordlister", words_path, class:"brand-logo" %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "Home", words_path %>
+        <li><%= link_to "Tools", tools_path %>
+      </ul>
+    </div>
+  </nav>
     <div class="col s8 input-field">
     <%= form_tag words_path, method: :get do %>
       <%= text_field_tag 'term', params[:term], placeholder: "Search"  %>
